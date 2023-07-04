@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/vano31/onlinegame#readme",
   "dependencies": {
+    "firebase": "^9.23.0",
     "webpack": "^5.88.1",
     "webpack-cli": "^5.1.4"
   }
