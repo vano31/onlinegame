@@ -1,5 +1,6 @@
 import { startpage, signInForm, signUpForm} from './startpage.js';
 import { chooseGameLinks } from './choosegameguest.js';
+import { chooseGameModeGuestLinks } from './choosegamemodeguest.js';
 
 ///////////Firebase Initialization//////////////
 import {initializeApp} from 'firebase/app'
@@ -21,7 +22,8 @@ initializeApp(firebaseConfig);
 ////////////StartPage Information///////////////
 let {startPageTitle, signInButton, signUpButton, guestButton} = startpage();
 
-let {chooseGameSection, chooseHeading, tictactoeButton, dotandboxButton, returnButton} = chooseGameLinks();
+let {chooseGameSection, chooseHeading, tictactoeButton, dotandboxButton, returnGuestButton} = chooseGameLinks();
+let {chooseGameModeSection, chooseModeHeading, vsCpuGuest, vsLocalGuest, returnGuestModeButton} = chooseGameModeGuestLinks();
 
 let starterButtons = document.createElement('div');
 starterButtons.id = 'starterButtons';
@@ -97,7 +99,7 @@ guestButton.addEventListener('click', function(){
 
 })
 
-returnButton.addEventListener('click', function() {
+returnGuestButton.addEventListener('click', function() {
 
     gameSpace.removeChild(chooseGameSection);
 
@@ -116,7 +118,16 @@ returnButton.addEventListener('click', function() {
 
 tictactoeButton.addEventListener('click', function() {
 
+    gameSpace.removeChild(chooseGameSection);
+    gameSpace.appendChild(chooseGameModeSection);
 
+
+});
+
+returnGuestModeButton.addEventListener('click', function() {
+
+    gameSpace.removeChild(chooseGameModeSection);
+    gameSpace.appendChild(chooseGameSection);
 
 
 })

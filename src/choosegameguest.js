@@ -20,17 +20,17 @@ let chooseGameLinks = function() {
 
     ////Other chooseGameButtons can be added here later
 
-    let returnButton = document.createElement('button');
-    returnButton.id = 'returnButton';
-    returnButton.textContent = 'Go Back';
+    let returnGuestButton = document.createElement('button');
+    returnGuestButton.id = 'returnGuestButton';
+    returnGuestButton.textContent = 'Go Back';
 
     chooseGameSection.appendChild(chooseHeading);
     chooseGameSection.appendChild(tictactoeButton);
     chooseGameSection.appendChild(dotandboxButton);
-    chooseGameSection.appendChild(returnButton);
+    chooseGameSection.appendChild(returnGuestButton);
 
 
-    return {chooseGameSection, chooseHeading, tictactoeButton, dotandboxButton, returnButton}
+    return {chooseGameSection, chooseHeading, tictactoeButton, dotandboxButton, returnGuestButton}
 
 }
 
