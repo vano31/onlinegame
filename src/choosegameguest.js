@@ -10,7 +10,13 @@ let chooseGameLinks = function() {
 
     let tictactoeButton = document.createElement('button');
     tictactoeButton.classList.add('gameChooseButton');
+    tictactoeButton.id = 'tictactoeButton';
     tictactoeButton.textContent = 'Tic Tac Toe';
+
+    let dotandboxButton = document.createElement('button');
+    dotandboxButton.classList.add('gameChooseButton');
+    dotandboxButton.id = 'dotandboxButton';
+    dotandboxButton.textContent = 'Dot and Boxes'
 
     ////Other chooseGameButtons can be added here later
 
@@ -20,10 +26,11 @@ let chooseGameLinks = function() {
 
     chooseGameSection.appendChild(chooseHeading);
     chooseGameSection.appendChild(tictactoeButton);
+    chooseGameSection.appendChild(dotandboxButton);
     chooseGameSection.appendChild(returnButton);
 
 
-    return {chooseGameSection, chooseHeading, tictactoeButton, returnButton}
+    return {chooseGameSection, chooseHeading, tictactoeButton, dotandboxButton, returnButton}
 
 }
 

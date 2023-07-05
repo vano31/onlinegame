@@ -1,5 +1,5 @@
 import { startpage, signInForm, signUpForm} from './startpage.js';
-import { chooseGameLinks } from './choosegame.js';
+import { chooseGameLinks } from './choosegameguest.js';
 
 ///////////Firebase Initialization//////////////
 import {initializeApp} from 'firebase/app'
@@ -21,7 +21,7 @@ initializeApp(firebaseConfig);
 ////////////StartPage Information///////////////
 let {startPageTitle, signInButton, signUpButton, guestButton} = startpage();
 
-let {chooseGameSection, chooseHeading, tictactoeButton, returnButton} = chooseGameLinks();
+let {chooseGameSection, chooseHeading, tictactoeButton, dotandboxButton, returnButton} = chooseGameLinks();
 
 let starterButtons = document.createElement('div');
 starterButtons.id = 'starterButtons';
@@ -108,6 +108,13 @@ returnButton.addEventListener('click', function() {
 
 
     console.log('Return Button Clicked');
+
+
+
+})
+
+
+tictactoeButton.addEventListener('click', function() {
 
 
 
