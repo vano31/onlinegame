@@ -1,4 +1,4 @@
-import { startpage } from './startpage.js';
+import { startpage, signInForm, signUpForm} from './startpage.js';
 
 import {initializeApp} from 'firebase/app'
 
@@ -27,6 +27,12 @@ document.body.appendChild(guestButton);
 
 signInButton.addEventListener('click', function() {
 
+    document.body.appendChild(signInForm);
+
+    if (document.body.contains(signUpForm)) {
+        document.body.removeChild(signUpForm)
+    }
+
     console.log('Sign In Clicked')
 
 
@@ -36,7 +42,14 @@ signInButton.addEventListener('click', function() {
 
 
 signUpButton.addEventListener('click', function() {
-    
+
+
+
+    document.body.appendChild(signUpForm);
+
+    if (document.body.contains(signInForm)) {
+        document.body.removeChild(signInForm)
+    }
 
     console.log('Sign Up Button Clicked')
 
@@ -48,6 +61,5 @@ signUpButton.addEventListener('click', function() {
 guestButton.addEventListener('click', function(){
 
     console.log('Guest Button Clicked')
-
 
 })
