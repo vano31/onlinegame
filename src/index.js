@@ -24,7 +24,8 @@ initializeApp(firebaseConfig);
 let {startPageTitle, signInButton, signUpButton, guestButton} = startpage();
 let {chooseGameSection, chooseHeading, tictactoeButton, dotandboxButton, returnGuestButton} = chooseGameLinks();
 let {chooseGameModeSection, chooseModeHeading, vsCpuGuest, vsLocalGuest, returnGuestModeButton} = chooseGameModeGuestLinks();
-let {string1} = tictactoeMainGame(); 
+//let {string1} = tictactoeMainGame(); 
+let {Grid} = tictactoeMainGame();
 
 let starterButtons = document.createElement('div');
 starterButtons.id = 'starterButtons';
@@ -136,7 +137,9 @@ tictactoeButton.addEventListener('click', function() {
 vsLocalGuest.addEventListener('click', function() {
 
     gameSpace.removeChild(chooseGameModeSection);
-    gameSpace.appendChild(string1);
+    //gameSpace.appendChild(string1);
+
+    console.log(Grid);
 
 
 
