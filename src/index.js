@@ -1,4 +1,5 @@
 import { startpage, signInForm, signUpForm} from './startpage.js';
+import { chooseGameLinks } from './choosegame.js';
 
 ///////////Firebase Initialization//////////////
 import {initializeApp} from 'firebase/app'
@@ -17,22 +18,37 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 
 
-
 ////////////StartPage Information///////////////
 let {startPageTitle, signInButton, signUpButton, guestButton} = startpage();
 
+let {chooseGameSection, chooseHeading, tictactoeButton, returnButton} = chooseGameLinks();
 
-document.body.appendChild(startPageTitle);
-document.body.appendChild(signInButton);
-document.body.appendChild(signUpButton);
-document.body.appendChild(guestButton);
+let starterButtons = document.createElement('div');
+starterButtons.id = 'starterButtons';
+document.body.appendChild(starterButtons);
+
+
+starterButtons.appendChild(startPageTitle);
+starterButtons.appendChild(signInButton);
+starterButtons.appendChild(signUpButton);
+starterButtons.appendChild(guestButton);
+
+
+//////GameSpace Div- Purpose is to Use this space as a container for whatever game of forms are loaded///////////
+let gameSpace = document.createElement('div');
+gameSpace.id = 'gameSpace';
+document.body.appendChild(gameSpace);
+
+
 
 signInButton.addEventListener('click', function() {
 
-    document.body.appendChild(signInForm);
+    gameSpace.appendChild(signInForm);
 
-    if (document.body.contains(signUpForm)) {
-        document.body.removeChild(signUpForm);
+    if (gameSpace.contains(signUpForm)) {
+        gameSpace.removeChild(signUpForm);
+    }   else if (gameSpace.contains(chooseGameSection)) {
+        gameSpace.removeChild(chooseGameSection);
     }
     console.log('Sign In Clicked');
 
@@ -42,10 +58,12 @@ signInButton.addEventListener('click', function() {
 
 signUpButton.addEventListener('click', function() {
 
-    document.body.appendChild(signUpForm);
+    gameSpace.appendChild(signUpForm);
 
-    if (document.body.contains(signInForm)) {
-        document.body.removeChild(signInForm)
+    if (gameSpace.contains(signInForm)) {
+        gameSpace.removeChild(signInForm)
+    }   else if (gameSpace.contains(chooseGameSection)) {
+        gameSpace.removeChild(chooseGameSection);
     }
     console.log('Sign Up Button Clicked');
 
@@ -58,16 +76,19 @@ signUpButton.addEventListener('click', function() {
 guestButton.addEventListener('click', function(){
 
 
-    if (document.body.contains(signInForm)) {
-        document.body.removeChild(signInForm)
+    if (gameSpace.contains(signInForm)) {
+        gameSpace.removeChild(signInForm)
     }
 
-    if (document.body.contains(signUpForm)) {
-        document.body.removeChild(signUpForm);
+    if (gameSpace.contains(signUpForm)) {
+        gameSpace.removeChild(signUpForm);
     }
-
     
-
+    gameSpace.appendChild(chooseGameSection);
+    starterButtons.removeChild(startPageTitle);
+    starterButtons.removeChild(signInButton);
+    starterButtons.removeChild(signUpButton);
+    starterButtons.removeChild(guestButton);
 
 
     console.log('Guest Button Clicked');
@@ -75,3 +96,26 @@ guestButton.addEventListener('click', function(){
     
 
 })
+
+returnButton.addEventListener('click', function() {
+
+    gameSpace.removeChild(chooseGameSection);
+
+    starterButtons.appendChild(startPageTitle);
+    starterButtons.appendChild(signInButton);
+    starterButtons.appendChild(signUpButton);
+    starterButtons.appendChild(guestButton);
+
+
+    console.log('Return Button Clicked');
+
+
+
+
+})
+
+
+
+
+
+
