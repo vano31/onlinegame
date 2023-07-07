@@ -1,11 +1,5 @@
 let tictactoeMainGame = function() {
 
-    /*
-    let string1 = document.createElement('h2');
-    string1.textContent = 'Tic Tac Toe, 3 In A Row';
-    return {string1};
-    */
-
 //Start of Main Function tictactoeMainGame
 
 
@@ -18,7 +12,7 @@ let section = function(x,y) {
     let point = `${x_value}, ${y_value}`;
     let adjacent_points = [];
 
-    return {x_value, y_value, point, adjacent_points}
+    return {x_value, y_value, point, adjacent_points, symbol, icon}
 
 }
 
@@ -38,39 +32,8 @@ let grid = function(x_amount, y_amount) {
         }
 
     }
+  
 
-    //console.log(coordinates_original);
-    
-    /*
-    let coordinates = [];
-    for (let i = 0; i < coordinates_original.length; i++) {
-        coordinates[i] = coordinates_original[i];
-    }
-    */
-   
-
-    /*
-
-    for (let x = (coordinates.length - 1); x >= 0; x--) {
-
-        let single_coordinate = coordinates_original.shift();
-
-        if (single_coordinate.point === `${coordinates[x][`x_value`] + 1}, ${coordinates[x][`y_value`]}` || single_coordinate.point === `${coordinates[x][`x_value`] - 1}, ${coordinates[x][`y_value`]}` || single_coordinate.point === `${coordinates[x][`x_value`]}, ${coordinates[x][`y_value`] + 1}` || single_coordinate.point === `${coordinates[x][`x_value`]}, ${coordinates[x][`y_value`] - 1}` || single_coordinate.point === `${coordinates[x][`x_value`] + 1}, ${coordinates[x][`y_value`] + 1}` || single_coordinate.point === `${coordinates[x][`x_value`] - 1}, ${coordinates[x][`y_value`] - 1}`  ) {
-
-            coordinates[x].adjacent_points.push(single_coordinate);
-
-        }   else {
-
-            continue
-        }
-
-    }
-    */
-
-    /*
-    console.log(coordinates);
-    console.log(coordinates_original);
-    */
 
     for (let x = 0; x < coordinates.length; x++) {
 
@@ -87,9 +50,9 @@ let grid = function(x_amount, y_amount) {
 
 let tictactoeDOM = function() {
 
-    let tiles = document.createElement('div');
-    tiles.classList.add('tiles');
-    tiles.setAttribute('style', 'box-sizing: border-box; outline: 1px solid black; width: 600px; height: 600px; display: flex; flex-wrap: wrap; align-items: flex-start');
+    let container = document.createElement('div');
+    container.classList.add('tiles');
+    container.setAttribute('style', 'box-sizing: border-box; outline: 1px solid black; width: 600px; height: 600px; display: flex; flex-wrap: wrap; align-items: flex-start');
 
     for (let y = 2; y >= 0; y--) {
 
@@ -99,16 +62,37 @@ let tictactoeDOM = function() {
             tile.classList.add('tile');
             tile.id = `${x}, ${y}`;
             tile.setAttribute('style', 'box-sizing: border-box; outline: 1px solid black; width: 200px; height: 200px;');
-            tiles.appendChild(tile);
+            container.appendChild(tile);
+
+            //console.log(Grid.coordinates.length);
+
+            tile.addEventListener('click', function(e) {
+
+                let clickedCoordinate = e.target.id;
+                
+
+                for (let x = 0; x < Grid.length; x++) {
+
+                    if ((Grid[x].point === clickedCoordinate) && (Grid[x].symbol === '')) {
+
+                        Grid[x].symbol = 'shit'
+                        console.log(`shit`);
+
+
+                    }
+
+                }
+
+            })
 
 
         }
 
     }
     
-    ``
+    
 
-    return {tiles};
+    return {container};
 
 
 
@@ -118,7 +102,6 @@ let tictactoeDOM = function() {
 let Grid = grid(3,3);
 
 return {Grid, tictactoeDOM};
-
 
 
 //End of Main Function tictactoeMainGame

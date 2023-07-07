@@ -37,6 +37,8 @@ starterButtons.appendChild(signInButton);
 starterButtons.appendChild(signUpButton);
 starterButtons.appendChild(guestButton);
 
+let {container} = tictactoeDOM();
+
 
 //////GameSpace Div- Purpose is to Use this space as a container for whatever game of forms are loaded///////////
 let gameSpace = document.createElement('div');
@@ -138,6 +140,7 @@ vsLocalGuest.addEventListener('click', function() {
 
     gameSpace.removeChild(chooseGameModeSection);
     //gameSpace.appendChild(string1);
+    gameSpace.appendChild(container);
 
     console.log(Grid);
 
@@ -145,9 +148,10 @@ vsLocalGuest.addEventListener('click', function() {
 
 })
 
-let {tiles} = tictactoeDOM();
 
-document.body.appendChild(tiles);
+
+
+
 
 
 
