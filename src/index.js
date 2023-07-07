@@ -25,7 +25,7 @@ let {startPageTitle, signInButton, signUpButton, guestButton} = startpage();
 let {chooseGameSection, chooseHeading, tictactoeButton, dotandboxButton, returnGuestButton} = chooseGameLinks();
 let {chooseGameModeSection, chooseModeHeading, vsCpuGuest, vsLocalGuest, returnGuestModeButton} = chooseGameModeGuestLinks();
 //let {string1} = tictactoeMainGame(); 
-let {Grid} = tictactoeMainGame();
+let {Grid, tictactoeDOM} = tictactoeMainGame();
 
 let starterButtons = document.createElement('div');
 starterButtons.id = 'starterButtons';
@@ -144,6 +144,10 @@ vsLocalGuest.addEventListener('click', function() {
 
 
 })
+
+let {tiles} = tictactoeDOM();
+
+document.body.appendChild(tiles);
 
 
 

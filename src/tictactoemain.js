@@ -85,10 +85,39 @@ let grid = function(x_amount, y_amount) {
 
 }
 
+let tictactoeDOM = function() {
+
+    let tiles = document.createElement('div');
+    tiles.classList.add('tiles');
+    tiles.setAttribute('style', 'box-sizing: border-box; outline: 1px solid black; width: 600px; height: 600px; display: flex; flex-wrap: wrap; align-items: flex-start');
+
+    for (let y = 2; y >= 0; y--) {
+
+        for (let x = 0; x <= 2; x++) {
+
+            let tile = document.createElement('div');
+            tile.classList.add('tile');
+            tile.id = `${x}, ${y}`;
+            tile.setAttribute('style', 'box-sizing: border-box; outline: 1px solid black; width: 200px; height: 200px;');
+            tiles.appendChild(tile);
+
+
+        }
+
+    }
+    
+    ``
+
+    return {tiles};
+
+
+
+}
+
 
 let Grid = grid(3,3);
 
-return {Grid};
+return {Grid, tictactoeDOM};
 
 
 
