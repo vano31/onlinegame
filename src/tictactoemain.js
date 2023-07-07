@@ -1,3 +1,5 @@
+import './style.css'
+
 let tictactoeMainGame = function() {
 
 //Start of Main Function tictactoeMainGame
@@ -75,8 +77,9 @@ let tictactoeDOM = function() {
 
                     if ((Grid[x].point === clickedCoordinate) && (Grid[x].symbol === '')) {
 
-                        Grid[x].symbol = 'shit'
-                        console.log(`shit`);
+                        Grid[x].symbol = 'x'
+                        e.target.classList.add('xsymbol');
+                        console.log(Grid[x]);
 
 
                     }

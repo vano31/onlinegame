@@ -2,9 +2,10 @@ import { startpage, signInForm, signUpForm} from './startpage.js';
 import { chooseGameLinks } from './choosegameguest.js';
 import { chooseGameModeGuestLinks } from './choosegamemodeguest.js';
 import { tictactoeMainGame } from './tictactoemain.js';
+import './style.css';
 
 ///////////Firebase Initialization//////////////
-import {initializeApp} from 'firebase/app'
+import { initializeApp } from 'firebase/app'
 
 
 const firebaseConfig = {
