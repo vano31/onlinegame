@@ -1,3 +1,4 @@
+//import { deflateSync } from 'zlib';
 import './style.css'
 
 let tictactoeMainGame = function() {
@@ -50,6 +51,173 @@ let grid = function(x_amount, y_amount) {
 
 }
 
+
+let dFSChecker = function(coordinate, tally, changeX, changeY) {
+
+    let adjacents = coordinate.adjacent_points;
+    let lastOne = adjacents.length - 1;
+
+
+    if (tally === 2) {
+
+        console.log(`X has reached 3 in a Row`);
+        //tally = 1;
+        return
+        
+
+    }
+
+    if (tally === 0) {
+
+        if (adjacents.length === 0) {
+
+            return
+
+        }   else {
+
+            while (adjacents.length > 0) {
+
+                /*
+                console.log(coordinate.x_value);
+                console.log(adjacents);
+                console.log(lastOne);
+                console.log(adjacents[lastOne]);
+                */
+
+                let newSlopeX = coordinate.x_value - adjacents[lastOne].x_value;
+                let newSlopeY = coordinate.y_value - adjacents[lastOne].y_value;
+
+                if (adjacents[lastOne].symbol === coordinate.symbol) {
+
+                    dFSChecker(adjacents[lastOne], (tally + 1), newSlopeX, newSlopeY);
+
+                    adjacents.pop();
+                    lastOne = adjacents.length - 1;
+
+                    
+                }   else {
+
+                    adjacents.pop();
+                    lastOne = adjacents.length - 1;
+
+                }
+
+
+            }
+
+        }
+
+
+
+    }
+
+    if (tally === 1) {
+
+        if (adjacents.length === 0) {
+
+            return
+
+        }   else {
+
+            while(adjacents.length > 0) {
+
+
+                /////Overarching if else statement- start
+
+                if (adjacents[lastOne].symbol === coordinate.symbol) {
+
+                    /*
+                    let newSlopeX = coordinate.x_value - adjacents[lastOne].x_value;
+                    let newSlopeY = coordinate.y_value - adjacents[lastOne].y_value;
+                    */
+
+                    if ( (coordinate.x_value - adjacents[lastOne].x_value === changeX) && (coordinate.y_value - adjacents[lastOne].y_value === changeY) ) {
+
+                        let newSlopeX = coordinate.x_value - adjacents[lastOne].x_value;
+                        let newSlopeY = coordinate.y_value - adjacents[lastOne].y_value;
+                        
+                        dFSChecker(adjacents[lastOne], (tally + 1), newSlopeX, newSlopeY);
+
+                        adjacents.pop();
+                        lastOne = adjacents.length - 1;
+
+
+                    }   else {
+
+                        adjacents.pop()
+                        lastOne = adjacents.length - 1;
+
+                    }
+
+
+
+                }   else {
+
+
+                    adjacents.pop();
+                    lastOne = adjacents.length - 1;
+
+                }
+
+
+                /////Overarching if else statement- end
+
+
+
+               
+
+
+
+
+            }
+
+        }
+
+
+
+
+    }
+
+
+}
+
+let connectionChecker = function(coordinate) {
+
+    let markedCoordinates = [];
+
+    for (let x = 0; x < coordinate.adjacent_points.length; x++) {
+
+        if ((coordinate.adjacent_points[x].symbol === 'x') && (coordinate.adjacent_points[x].x_value === 0 || coordinate.adjacent_points[x].x_value === 2 || coordinate.adjacent_points[x].y_value === 0 || coordinate.adjacent_points[x].y_value === 2)) {
+
+            markedCoordinates.push(coordinate.adjacent_points[x]);
+
+        }   else {
+
+            continue
+
+        }
+
+    }
+
+    if (markedCoordinates.length > 0) {
+
+        for (let x = 0; x < markedCoordinates.length; x++) {
+
+            dFSChecker(markedCoordinates[x], 0, 0, 0)
+    
+        }
+
+
+    }
+
+    
+
+
+
+}
+
+
+
 let tictactoeDOM = function() {
 
     let container = document.createElement('div');
@@ -79,7 +247,9 @@ let tictactoeDOM = function() {
 
                         Grid[x].symbol = 'x'
                         e.target.classList.add('xsymbol');
+
                         console.log(Grid[x]);
+                        connectionChecker(Grid[x]);
 
 
                     }
