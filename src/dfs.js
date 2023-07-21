@@ -194,7 +194,7 @@ let DFS = function(coordinate, symbol, xvector, yvector, direction, count) {
 
         let newSameSymbolAdjacents = [];
 
-        console.log('run forward')
+        //console.log('run forward')
         //console.log(coordinate);
 
         
@@ -202,7 +202,7 @@ let DFS = function(coordinate, symbol, xvector, yvector, direction, count) {
         while (sameSymbolAdjacents.length > 0) {
 
             let lastIndex = sameSymbolAdjacents.length - 1;
-            console.log(sameSymbolAdjacents[lastIndex]);
+            //console.log(sameSymbolAdjacents[lastIndex]);
 
             
             //console.log(xvector)
@@ -228,7 +228,7 @@ let DFS = function(coordinate, symbol, xvector, yvector, direction, count) {
 
             }   else {
 
-                console.log('Whipp');
+                //console.log('Whipp');
                 newSameSymbolAdjacents.push(sameSymbolAdjacents.pop());
                 //console.log(coordinate);
                 //console.log(sameSymbolAdjacents);
@@ -243,12 +243,12 @@ let DFS = function(coordinate, symbol, xvector, yvector, direction, count) {
 
             for (const sameSymbolCoordinate of newSameSymbolAdjacents) {
 
-                console.log('Booyah')
-                console.log(newSameSymbolAdjacents)
-                console.log(sameSymbolCoordinate);
-                console.log(coordinate);
-                console.log(xvector);
-                console.log(yvector);
+                //console.log('Booyah')
+                //console.log(newSameSymbolAdjacents)
+                //console.log(sameSymbolCoordinate);
+                //console.log(coordinate);
+                //console.log(xvector);
+                //console.log(yvector);
 
                 if (sameSymbolCoordinate.x_vector === (xvector) && sameSymbolCoordinate.y_vector === (yvector)) {
     
@@ -278,7 +278,7 @@ let DFS = function(coordinate, symbol, xvector, yvector, direction, count) {
 
     if (direction === 'backward') {
 
-        console.log('run backward');
+        //console.log('run backward');
         //console.log(coordinate);
 
 
@@ -295,11 +295,11 @@ let DFS = function(coordinate, symbol, xvector, yvector, direction, count) {
 
                     if (sameSymbolCoordinate.x_vector === (xvector) && sameSymbolCoordinate.y_vector === (yvector)) {
 
-                        console.log('checking');
-                        console.log(coordinate);
-                        console.log(sameSymbolCoordinate)
-                        console.log(xvector);
-                        console.log(yvector)
+                        //console.log('checking');
+                        //console.log(coordinate);
+                        //console.log(sameSymbolCoordinate)
+                        //console.log(xvector);
+                        //console.log(yvector)
         
                         DFS(sameSymbolCoordinate, symbol, sameSymbolCoordinate.x_vector, sameSymbolCoordinate.y_vector, 'backward', count + 1)
                         break
