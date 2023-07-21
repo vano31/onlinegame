@@ -220,9 +220,9 @@ let connectionChecker = function(coordinate) {
 
 let tictactoeDOM = function() {
 
-    let container = document.createElement('div');
-    container.classList.add('tiles');
-    container.setAttribute('style', 'box-sizing: border-box; outline: 1px solid black; width: 600px; height: 600px; display: flex; flex-wrap: wrap; align-items: flex-start');
+    let tictactoecontainer = document.createElement('div');
+    tictactoecontainer.classList.add('tiles');
+    tictactoecontainer.setAttribute('style', 'box-sizing: border-box; outline: 1px solid black; width: 600px; height: 600px; display: flex; flex-wrap: wrap; align-items: flex-start');
 
     for (let y = 2; y >= 0; y--) {
 
@@ -232,24 +232,26 @@ let tictactoeDOM = function() {
             tile.classList.add('tile');
             tile.id = `${x}, ${y}`;
             tile.setAttribute('style', 'box-sizing: border-box; outline: 1px solid black; width: 200px; height: 200px;');
-            container.appendChild(tile);
+            tictactoecontainer.appendChild(tile);
 
             //console.log(Grid.coordinates.length);
 
-            tile.addEventListener('click', function(e) {
+            tile.addEventListener('click', function clickHandler(e) {
 
                 let clickedCoordinate = e.target.id;
                 
 
-                for (let x = 0; x < Grid.length; x++) {
+                for (let x = 0; x < tictactoeGrid.length; x++) {
 
-                    if ((Grid[x].point === clickedCoordinate) && (Grid[x].symbol === '')) {
+                    if ((tictactoeGrid[x].point === clickedCoordinate) && (tictactoeGrid[x].symbol === '')) {
 
-                        Grid[x].symbol = 'x'
+                        tictactoeGrid[x].symbol = 'x'
                         e.target.classList.add('xsymbol');
 
-                        console.log(Grid[x]);
-                        connectionChecker(Grid[x]);
+                        console.log(tictactoeGrid[x]);
+                        connectionChecker(tictactoeGrid[x]);
+                        //tile.removeEventListener(clickHandler)
+
 
 
                     }
@@ -265,16 +267,16 @@ let tictactoeDOM = function() {
     
     
 
-    return {container};
+    return {tictactoecontainer};
 
 
 
 }
 
 
-let Grid = grid(3,3);
+let tictactoeGrid = grid(3,3);
 
-return {Grid, tictactoeDOM};
+return {tictactoeGrid, tictactoeDOM};
 
 
 //End of Main Function tictactoeMainGame

@@ -2,6 +2,7 @@ import { startpage, signInForm, signUpForm} from './startpage.js';
 import { chooseGameLinks } from './choosegameguest.js';
 import { chooseGameModeGuestLinks } from './choosegamemodeguest.js';
 import { tictactoeMainGame } from './tictactoemain.js';
+import { connectfourMainGame } from './connectfourmain.js';
 import './style.css';
 
 ///////////Firebase Initialization//////////////
@@ -23,10 +24,11 @@ initializeApp(firebaseConfig);
 
 ////////////StartPage Information///////////////
 let {startPageTitle, signInButton, signUpButton, guestButton} = startpage();
-let {chooseGameSection, chooseHeading, tictactoeButton, dotandboxButton, returnGuestButton} = chooseGameLinks();
+let {chooseGameSection, chooseHeading, tictactoeButton, connectfourButton, dotandboxButton, returnGuestButton} = chooseGameLinks();
 let {chooseGameModeSection, chooseModeHeading, vsCpuGuest, vsLocalGuest, returnGuestModeButton} = chooseGameModeGuestLinks();
 //let {string1} = tictactoeMainGame(); 
-let {Grid, tictactoeDOM} = tictactoeMainGame();
+let {tictactoeGrid, tictactoeDOM} = tictactoeMainGame();
+let {connectfourGrid, connectfourDOM} = connectfourMainGame()
 
 let starterButtons = document.createElement('div');
 starterButtons.id = 'starterButtons';
@@ -38,7 +40,18 @@ starterButtons.appendChild(signInButton);
 starterButtons.appendChild(signUpButton);
 starterButtons.appendChild(guestButton);
 
-let {container} = tictactoeDOM();
+////////////////////////////////////////////////////////
+
+let {tictactoecontainer} = tictactoeDOM();
+let {connectfourcontainer} = connectfourDOM();
+
+let gamecontainer;
+let gameGrid;
+
+
+/////////////////////////////////////////////////////////
+
+
 
 
 //////GameSpace Div- Purpose is to Use this space as a container for whatever game of forms are loaded///////////
@@ -134,16 +147,31 @@ tictactoeButton.addEventListener('click', function() {
     gameSpace.removeChild(chooseGameSection);
     gameSpace.appendChild(chooseGameModeSection);
 
+    gamecontainer = tictactoecontainer;
+    gameGrid = tictactoeGrid;
+
 
 });
+
+
+connectfourButton.addEventListener('click', function() {
+
+    gameSpace.removeChild(chooseGameSection);
+    gameSpace.appendChild(chooseGameModeSection);
+
+    gamecontainer = connectfourcontainer;
+    gameGrid = connectfourGrid;
+
+
+})
 
 vsLocalGuest.addEventListener('click', function() {
 
     gameSpace.removeChild(chooseGameModeSection);
     //gameSpace.appendChild(string1);
-    gameSpace.appendChild(container);
+    gameSpace.appendChild(gamecontainer);
 
-    console.log(Grid);
+    console.log(gameGrid);
 
 
 
