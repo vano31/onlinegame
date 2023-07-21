@@ -1,5 +1,6 @@
 //import { deflateSync } from 'zlib';
 import './style.css'
+import {DFS} from './dfs.js'
 
 let tictactoeMainGame = function() {
 
@@ -52,7 +53,8 @@ let grid = function(x_amount, y_amount) {
 }
 
 
-let dFSChecker = function(coordinate, tally, changeX, changeY) {
+
+/*let dFSChecker = function(coordinate, tally, changeX, changeY) {
 
     let adjacents = coordinate.adjacent_points;
     let lastOne = adjacents.length - 1;
@@ -82,7 +84,7 @@ let dFSChecker = function(coordinate, tally, changeX, changeY) {
                 console.log(adjacents);
                 console.log(lastOne);
                 console.log(adjacents[lastOne]);
-                */
+                
 
                 let newSlopeX = coordinate.x_value - adjacents[lastOne].x_value;
                 let newSlopeY = coordinate.y_value - adjacents[lastOne].y_value;
@@ -129,7 +131,7 @@ let dFSChecker = function(coordinate, tally, changeX, changeY) {
                     /*
                     let newSlopeX = coordinate.x_value - adjacents[lastOne].x_value;
                     let newSlopeY = coordinate.y_value - adjacents[lastOne].y_value;
-                    */
+                    
 
                     if ( (coordinate.x_value - adjacents[lastOne].x_value === changeX) && (coordinate.y_value - adjacents[lastOne].y_value === changeY) ) {
 
@@ -181,6 +183,9 @@ let dFSChecker = function(coordinate, tally, changeX, changeY) {
 
 }
 
+*/
+
+/*
 let connectionChecker = function(coordinate) {
 
     let markedCoordinates = [];
@@ -215,6 +220,7 @@ let connectionChecker = function(coordinate) {
 
 
 }
+*/
 
 
 
@@ -249,7 +255,8 @@ let tictactoeDOM = function() {
                         e.target.classList.add('xsymbol');
 
                         console.log(tictactoeGrid[x]);
-                        connectionChecker(tictactoeGrid[x]);
+                        DFS(tictactoeGrid[x], 'x', 0, 0, 'start', 0, 3)
+                        //connectionChecker(tictactoeGrid[x]);
                         //tile.removeEventListener(clickHandler)
 
 

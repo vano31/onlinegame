@@ -287,7 +287,17 @@ let DFS = function(coordinate, symbol, xvector, yvector, direction, count, count
 
             if (count === countMax) {
 
-                console.log('You Got Connect 4!');
+
+                if (countMax === 4) {
+
+                    console.log('You Got Connect 4!');
+
+                }   else if (countMax === 3) {
+
+                    console.log('You Got Tic Tac Toe')
+                }
+
+                
                 return
 
             }   else {
