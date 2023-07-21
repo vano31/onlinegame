@@ -284,7 +284,7 @@ let DFS = function(coordinate, symbol, xvector, yvector, direction, count) {
 
         if (sameSymbolAdjacents.length > 0) {
 
-            if (count === 3) {
+            if (count === 4) {
 
                 console.log('You Got Connect 4!');
                 return
@@ -293,9 +293,15 @@ let DFS = function(coordinate, symbol, xvector, yvector, direction, count) {
 
                 for (const sameSymbolCoordinate of sameSymbolAdjacents) {
 
-                    if (sameSymbolCoordinate.x_vector === xvector && sameSymbolCoordinate.y_vector === yvector) {
+                    if (sameSymbolCoordinate.x_vector === (xvector) && sameSymbolCoordinate.y_vector === (yvector)) {
+
+                        console.log('checking');
+                        console.log(coordinate);
+                        console.log(sameSymbolCoordinate)
+                        console.log(xvector);
+                        console.log(yvector)
         
-                        DFS(coordinate, symbol, sameSymbolCoordinate.x_vector, sameSymbolCoordinate.y_vector, 'backward', count + 1)
+                        DFS(sameSymbolCoordinate, symbol, sameSymbolCoordinate.x_vector, sameSymbolCoordinate.y_vector, 'backward', count + 1)
                         break
         
         
