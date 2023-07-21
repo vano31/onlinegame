@@ -1,5 +1,5 @@
 
-let DFS = function(coordinate, symbol, xvector, yvector, direction, count) { 
+let DFS = function(coordinate, symbol, xvector, yvector, direction, count, countMax) { 
 
 
     //parameter coordinate is the current coordinate
@@ -8,6 +8,7 @@ let DFS = function(coordinate, symbol, xvector, yvector, direction, count) {
     //yvector is the change of the distance between the next coordinate.y_value and the current coordinate.y_value
     //direction lets you know whether we are going forward or backwards with the connection, or whether we are starting the function (forward, backward, start)
     //count tells you how many adjacent points that have the same vector have been found in the opposite direction
+    //CountMax tells you how many connections you need to get the win condition- for Connect 4, its 4. for TicTacToe, its 3
 
 
     //let x_vectors = [];
@@ -183,7 +184,7 @@ let DFS = function(coordinate, symbol, xvector, yvector, direction, count) {
             //console.log(coordinate);
             
 
-            DFS(lastSameSymbolAdjacent, symbol, lastSameSymbolAdjacent.x_vector_opposite, lastSameSymbolAdjacent.y_vector_opposite, 'forward', 0)
+            DFS(lastSameSymbolAdjacent, symbol, lastSameSymbolAdjacent.x_vector_opposite, lastSameSymbolAdjacent.y_vector_opposite, 'forward', 0, countMax)
 
         }
 
@@ -219,7 +220,7 @@ let DFS = function(coordinate, symbol, xvector, yvector, direction, count) {
 
 
 
-                DFS(sameSymbolAdjacents[lastIndex], symbol, sameSymbolAdjacents[lastIndex].x_vector_opposite, sameSymbolAdjacents[lastIndex].y_vector_opposite, 'forward', 0 )
+                DFS(sameSymbolAdjacents[lastIndex], symbol, sameSymbolAdjacents[lastIndex].x_vector_opposite, sameSymbolAdjacents[lastIndex].y_vector_opposite, 'forward', 0, countMax)
                 newSameSymbolAdjacents.push(sameSymbolAdjacents.pop());
                 //console.log(coordinate);
                 //console.log(sameSymbolAdjacents);
@@ -252,7 +253,7 @@ let DFS = function(coordinate, symbol, xvector, yvector, direction, count) {
 
                 if (sameSymbolCoordinate.x_vector === (xvector) && sameSymbolCoordinate.y_vector === (yvector)) {
     
-                    DFS(coordinate, symbol, sameSymbolCoordinate.x_vector, sameSymbolCoordinate.y_vector, 'backward', count + 1)
+                    DFS(coordinate, symbol, sameSymbolCoordinate.x_vector, sameSymbolCoordinate.y_vector, 'backward', count + 1, countMax)
                     break
     
     
@@ -284,7 +285,7 @@ let DFS = function(coordinate, symbol, xvector, yvector, direction, count) {
 
         if (sameSymbolAdjacents.length > 0) {
 
-            if (count === 4) {
+            if (count === countMax) {
 
                 console.log('You Got Connect 4!');
                 return
@@ -301,7 +302,7 @@ let DFS = function(coordinate, symbol, xvector, yvector, direction, count) {
                         //console.log(xvector);
                         //console.log(yvector)
         
-                        DFS(sameSymbolCoordinate, symbol, sameSymbolCoordinate.x_vector, sameSymbolCoordinate.y_vector, 'backward', count + 1)
+                        DFS(sameSymbolCoordinate, symbol, sameSymbolCoordinate.x_vector, sameSymbolCoordinate.y_vector, 'backward', count + 1, countMax)
                         break
         
         

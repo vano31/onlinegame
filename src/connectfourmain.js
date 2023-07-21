@@ -434,9 +434,9 @@ let connectfourDOM = function() {
                         e.target.classList.add('xsymbol');
 
 
-                        DFS(connectfourGrid[x], 'x', 0, 0, 'start', 0)
+                        DFS(connectfourGrid[x], 'x', 0, 0, 'start', 0, 4)
                         //dfsChecker(connectfourGrid[x], 0, 0, 0, 0, 'x');
-                        //console.log(connectfourGrid[x]);
+                        console.log(connectfourGrid[x]);
                         //connectionChecker(connectfourGrid[x]);
                         //tile.removeEventListener(clickHandler)
 
