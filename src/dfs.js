@@ -1,6 +1,8 @@
 
 let DFS = function(coordinate, symbol, xvector, yvector, direction, count, countMax) { 
 
+    //This function is used for both Tic Toe and Connect 4
+
 
     //parameter coordinate is the current coordinate
     //symbol is the symbol of the coordinate
