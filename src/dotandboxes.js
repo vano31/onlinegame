@@ -210,7 +210,7 @@ let dotandboxesDOM = function() {
             let box = document.createElement('div');
             box.classList.add('box');
             box.id = `${x}, ${y}`;
-            box.setAttribute('style', 'box-sizing: border-box; width: 100px; height: 100px; z-index: 2; position: relative;');
+            box.setAttribute('style', 'box-sizing: border-box; width: 100px; height: 100px; z-index: 2; position: relative; border-style: solid transparent; border-width: 1px; margin: -1;');
             boxContainer.appendChild(box);
 
         }
@@ -219,7 +219,7 @@ let dotandboxesDOM = function() {
 
     let vertexContainer = document.createElement('div');
     vertexContainer.classList.add('vertexContainer');
-    vertexContainer.setAttribute('style', 'box-sizing: border-box; width: 1010px; height: 1010px; display: flex; flex-wrap: wrap; align-items: flex-start; z-index: 3; gap: 95px 95px; position: absolute; margin-left: 97px; margin-top: 47px;');
+    vertexContainer.setAttribute('style', 'box-sizing: border-box; width: 1000px; height: 1000px; display: flex; flex-wrap: wrap; align-items: flex-start; z-index: 3; gap: 93px 93px; position: absolute; margin-left: 97px; margin-top: 47px;');
     dblargeContainer.appendChild(vertexContainer);
 
     for (let y = 10; y >= 0; y--) {
