@@ -4,6 +4,8 @@ import { chooseGameModeGuestLinks } from './choosegamemodeguest.js';
 import { tictactoeMainGame } from './tictactoemain.js';
 import { connectfourMainGame } from './connectfourmain.js';
 import { dotandboxesMainGame } from './dotandboxes.js';
+import { modeAndGameDecider } from './playerinfo.js';
+
 import './style.css';
 
 ///////////Firebase Initialization//////////////
@@ -50,6 +52,13 @@ let {dblargeContainer, boxContainer, vertexContainer} = dotandboxesDOM()
 
 let gamecontainer;
 let gameGrid;
+let gameType;
+
+
+//currentPlayer and currentgame are global variables that work in conjunction with modeAndGameDecider() and turnSwitchChanger(), respectively, to decide the game being played, which mode and whose turn it is
+let currentgame;
+let currentplayer
+
 
 
 /////////////////////////////////////////////////////////
@@ -186,7 +195,13 @@ vsLocalGuest.addEventListener('click', function() {
     //gameSpace.appendChild(string1);
     gameSpace.appendChild(gamecontainer);
 
+    gameType = 'local_multi';
+
+    modeAndGameDecider(gameType);
+
     console.log(gameGrid);
+
+
 
 
 
