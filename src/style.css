@@ -18,3 +18,20 @@
     
 
 }
+
+
+#gameSpace {
+
+    position: relative;
+    margin: auto;
+    width: 50%;
+    z-index: 0;
+}
+
+#starterButtons {
+
+    margin: auto;
+    width: 50%;
+
+
+}

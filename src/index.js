@@ -3,6 +3,7 @@ import { chooseGameLinks } from './choosegameguest.js';
 import { chooseGameModeGuestLinks } from './choosegamemodeguest.js';
 import { tictactoeMainGame } from './tictactoemain.js';
 import { connectfourMainGame } from './connectfourmain.js';
+import { dotandboxesMainGame } from './dotandboxes.js';
 import './style.css';
 
 ///////////Firebase Initialization//////////////
@@ -29,6 +30,7 @@ let {chooseGameModeSection, chooseModeHeading, vsCpuGuest, vsLocalGuest, returnG
 //let {string1} = tictactoeMainGame(); 
 let {tictactoeGrid, tictactoeDOM} = tictactoeMainGame();
 let {connectfourGrid, connectfourDOM} = connectfourMainGame()
+let {dotandboxesVertexGrid, dotandboxesBoxGrid, dotandboxesDOM} = dotandboxesMainGame()
 
 let starterButtons = document.createElement('div');
 starterButtons.id = 'starterButtons';
@@ -44,6 +46,7 @@ starterButtons.appendChild(guestButton);
 
 let {tictactoecontainer} = tictactoeDOM();
 let {connectfourcontainer} = connectfourDOM();
+let {dblargeContainer, boxContainer, vertexContainer} = dotandboxesDOM()
 
 let gamecontainer;
 let gameGrid;
@@ -164,6 +167,18 @@ connectfourButton.addEventListener('click', function() {
 
 
 })
+
+dotandboxButton.addEventListener('click', function() {
+
+    gameSpace.removeChild(chooseGameSection);
+    gameSpace.appendChild(chooseGameModeSection);
+
+    gamecontainer = dblargeContainer;
+    gameGrid = dotandboxesBoxGrid;
+
+
+})
+
 
 vsLocalGuest.addEventListener('click', function() {
 

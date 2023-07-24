@@ -29,9 +29,10 @@ let box = function(x,y) {
     let bottom_edge = [];
     let left_edge = [];
     let right_edge = [];
+    let edge_count;
 
 
-    return {x_value, y_value, coordinate, adjacent_boxes, color, connected_vertices, unit_vertex, top_edge, bottom_edge, left_edge, right_edge /*connected_edges*/}
+    return {x_value, y_value, coordinate, adjacent_boxes, color, connected_vertices, unit_vertex, top_edge, bottom_edge, left_edge, right_edge, edge_count /*connected_edges*/}
 
 
 
@@ -46,8 +47,9 @@ let vertexgrid = function(x_amount, y_amount) {
 
         for (let x = 0; x < x_amount; x++) {
 
-            let vertex = vertex(x,y);
-            vertices.push(vertex);
+            let vertexx = vertex(x,y);
+
+            vertices.push(vertexx);
 
         }
 
@@ -76,8 +78,8 @@ let boxgrid = function(x_amount, y_amount) {
 
         for (let x = 0; x < x_amount; x++) {
 
-            let box = box(x,y);
-            boxes.push(box);
+            let boxx = box(x,y);
+            boxes.push(boxx);
 
         }
 
@@ -86,8 +88,8 @@ let boxgrid = function(x_amount, y_amount) {
 
     for (let x = 0; x < boxes.length; x++) {
 
-        let connection_boxes = connections.filter(single_box => (single_box.coordinate === `${boxes[x][`x_value`] + 1}, ${boxes[x][`y_value`]}` || single_box.coordinate === `${boxes[x][`x_value`] - 1}, ${boxes[x][`y_value`]}` || single_box.coordinate === `${boxes[x][`x_value`]}, ${boxes[x][`y_value`] + 1}` || single_box.coordinate === `${boxes[x][`x_value`]}, ${boxes[x][`y_value`] - 1}` || single_box.coordinate === `${boxes[x][`x_value`] - 1}, ${boxes[x][`y_value`] - 1}` || single_box.coordinate === `${boxes[x][`x_value`] + 1}, ${boxes[x][`y_value`] + 1}` || single_box.coordinate === `${boxes[x][`x_value`] + 1}, ${boxes[x][`y_value`] - 1}` || single_box.coordinate === `${boxes[x][`x_value`] - 1}, ${boxes[x][`y_value`] + 1}`));
-        vertices[x]['adjacent_boxes'] = connection_boxes;
+        let connection_boxes = boxes.filter(single_box => (single_box.coordinate === `${boxes[x][`x_value`] + 1}, ${boxes[x][`y_value`]}` || single_box.coordinate === `${boxes[x][`x_value`] - 1}, ${boxes[x][`y_value`]}` || single_box.coordinate === `${boxes[x][`x_value`]}, ${boxes[x][`y_value`] + 1}` || single_box.coordinate === `${boxes[x][`x_value`]}, ${boxes[x][`y_value`] - 1}` || single_box.coordinate === `${boxes[x][`x_value`] - 1}, ${boxes[x][`y_value`] - 1}` || single_box.coordinate === `${boxes[x][`x_value`] + 1}, ${boxes[x][`y_value`] + 1}` || single_box.coordinate === `${boxes[x][`x_value`] + 1}, ${boxes[x][`y_value`] - 1}` || single_box.coordinate === `${boxes[x][`x_value`] - 1}, ${boxes[x][`y_value`] + 1}`));
+        boxes[x]['adjacent_boxes'] = connection_boxes;
 
     }
 
@@ -105,13 +107,13 @@ let boxgrid = function(x_amount, y_amount) {
 let unitVertexToBox = function(vertexGrid, boxGrid) {
 
 
-    boxGrid.boxes.forEach(box => {
+    boxGrid.forEach(box => {
 
-        for (let x = 0; x < vertexGrid.vertices.length; x++) {
+        for (let x = 0; x < vertexGrid.length; x++) {
 
-            if (vertexGrid.vertices[x].coordinate === box.coordinate) {
+            if (vertexGrid[x].coordinate === box.coordinate) {
 
-                box.unit_vertex = vertexGrid.vertices[x];
+                box.unit_vertex = vertexGrid[x];
                 break
 
             }
@@ -124,13 +126,13 @@ let unitVertexToBox = function(vertexGrid, boxGrid) {
 
 let setBoxConnectedVertices = function(vertexGrid, boxGrid) {
 
-    boxGrid.boxes.forEach(box => {
+    boxGrid.forEach(box => {
 
-        for (let x = 0; x < vertexGrid.vertices.length; x++) {
+        for (let x = 0; x < vertexGrid.length; x++) {
 
-            if (vertexGrid.vertices[x].coordinate === `${box.x_value}, ${box.y_value}` || vertexGrid.vertices[x].coordinate === `${box.x_value + 1}, ${box.y_value}` || vertexGrid.vertices[x].coordinate === `${box.x_value}, ${box.y_value + 1}` || vertexGrid.vertices[x].coordinate === `${box.x_value+ 1}, ${box.y_value + 1}`) {
+            if (vertexGrid[x].coordinate === `${box.x_value}, ${box.y_value}` || vertexGrid[x].coordinate === `${box.x_value + 1}, ${box.y_value}` || vertexGrid[x].coordinate === `${box.x_value}, ${box.y_value + 1}` || vertexGrid[x].coordinate === `${box.x_value+ 1}, ${box.y_value + 1}`) {
 
-                box.connected_vertices.push(vertexGrid.vertices[x]);
+                box.connected_vertices.push(vertexGrid[x]);
 
 
             }
@@ -146,7 +148,7 @@ let setBoxConnectedEdges = function(boxGrid) {
 
 
 
-    boxGrid.boxes.forEach(box => {
+    boxGrid.forEach(box => {
 
         for (let x = 0; x < box.connected_vertices.length; x++) {
 
@@ -187,8 +189,61 @@ let setBoxConnectedEdges = function(boxGrid) {
 
 }
 
+//dotandboxesDOM
+let dotandboxesDOM = function() {
 
-let dotandboxesVertexGrid = vertexgrid(10,10);
+
+    let dblargeContainer = document.createElement('div');
+    dblargeContainer.classList.add('largeContainer');
+    dblargeContainer.setAttribute('style', 'box-sizing: border-box; height: 1010px; width: 1010px; position: relative; z-index: 1')
+
+
+    let boxContainer = document.createElement('div');
+    boxContainer.classList.add('boxContainer');
+    boxContainer.setAttribute('style', 'box-sizing: border-box; outline: 1px solid black; width: 1000px; height: 1000px; display: flex; flex-wrap: wrap; align-items: flex-start; z-index: 2; position: absolute;');
+    dblargeContainer.appendChild(boxContainer);
+
+    for (let y = 9; y >= 0; y--) {
+
+        for (let x = 0; x <= 9; x++) {
+
+            let box = document.createElement('div');
+            box.classList.add('box');
+            box.id = `${x}, ${y}`;
+            box.setAttribute('style', 'box-sizing: border-box; outline: 1px solid black; width: 100px; height: 100px; outline-style: dotted; z-index: 2; position: relative;');
+            boxContainer.appendChild(box);
+
+        }
+
+    }
+
+    let vertexContainer = document.createElement('div');
+    vertexContainer.classList.add('vertexContainer');
+    vertexContainer.setAttribute('style', 'box-sizing: border-box; outline: 1px solid black; width: 1010px; height: 1010px; display: flex; flex-wrap: wrap; align-items: flex-start; z-index: 3; gap: 95px 95px; position: absolute');
+    dblargeContainer.appendChild(vertexContainer);
+
+    for (let y = 10; y >= 0; y--) {
+
+        for (let x = 0; x <= 10; x++) {
+
+            let vertex = document.createElement('div');
+            vertex.classList.add('vertex');
+            vertex.id = `${x}, ${y}`;
+            vertex.setAttribute('style', 'box-sizing: border-box; outline: 1px solid black; width: 5px; height: 5px; z-index: 3');
+            vertexContainer.appendChild(vertex);
+
+        }
+
+    }
+
+
+    return {dblargeContainer, boxContainer, vertexContainer}
+
+
+}
+
+
+let dotandboxesVertexGrid = vertexgrid(11,11);
 
 let dotandboxesBoxGrid = boxgrid(10,10);
 
@@ -199,7 +254,11 @@ setBoxConnectedVertices(dotandboxesVertexGrid, dotandboxesBoxGrid);
 setBoxConnectedEdges(dotandboxesBoxGrid);
 
 
-return {dotandboxesVertexGrid, dotandboxesBoxGrid}
+
+
+
+
+return {dotandboxesVertexGrid, dotandboxesBoxGrid, dotandboxesDOM}
 
 //End of Main Function dotandboxesMainGame
 }
@@ -209,5 +268,6 @@ return {dotandboxesVertexGrid, dotandboxesBoxGrid}
 export {dotandboxesMainGame}
 
 
-//Use Array.includes for finding out if the two points clicked contain the edges of a box and use that to determine if a box
+//Use Array.includes for finding out if the two points clicked contain the edges of a box.
+//Let edge_count be used to determine if all four edges of a box have been clicked
 
