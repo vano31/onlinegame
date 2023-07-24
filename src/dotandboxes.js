@@ -195,12 +195,12 @@ let dotandboxesDOM = function() {
 
     let dblargeContainer = document.createElement('div');
     dblargeContainer.classList.add('largeContainer');
-    dblargeContainer.setAttribute('style', 'box-sizing: border-box; height: 1010px; width: 1010px; position: relative; z-index: 1')
+    dblargeContainer.setAttribute('style', 'box-sizing: border-box; height: 1500px; width: 1500px; position: relative; z-index: 1')
 
 
     let boxContainer = document.createElement('div');
     boxContainer.classList.add('boxContainer');
-    boxContainer.setAttribute('style', 'box-sizing: border-box; outline: 1px solid black; width: 1000px; height: 1000px; display: flex; flex-wrap: wrap; align-items: flex-start; z-index: 2; position: absolute;');
+    boxContainer.setAttribute('style', 'box-sizing: border-box;  width: 1000px; height: 1000px; display: flex; flex-wrap: wrap; align-items: flex-start; z-index: 2; position: absolute; margin-left: 100px; margin-top: 50px');
     dblargeContainer.appendChild(boxContainer);
 
     for (let y = 9; y >= 0; y--) {
@@ -210,7 +210,7 @@ let dotandboxesDOM = function() {
             let box = document.createElement('div');
             box.classList.add('box');
             box.id = `${x}, ${y}`;
-            box.setAttribute('style', 'box-sizing: border-box; outline: 1px solid black; width: 100px; height: 100px; outline-style: dotted; z-index: 2; position: relative;');
+            box.setAttribute('style', 'box-sizing: border-box; width: 100px; height: 100px; z-index: 2; position: relative;');
             boxContainer.appendChild(box);
 
         }
@@ -219,7 +219,7 @@ let dotandboxesDOM = function() {
 
     let vertexContainer = document.createElement('div');
     vertexContainer.classList.add('vertexContainer');
-    vertexContainer.setAttribute('style', 'box-sizing: border-box; outline: 1px solid black; width: 1010px; height: 1010px; display: flex; flex-wrap: wrap; align-items: flex-start; z-index: 3; gap: 95px 95px; position: absolute');
+    vertexContainer.setAttribute('style', 'box-sizing: border-box; width: 1010px; height: 1010px; display: flex; flex-wrap: wrap; align-items: flex-start; z-index: 3; gap: 95px 95px; position: absolute; margin-left: 97px; margin-top: 47px;');
     dblargeContainer.appendChild(vertexContainer);
 
     for (let y = 10; y >= 0; y--) {
