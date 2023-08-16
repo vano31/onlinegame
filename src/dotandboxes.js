@@ -232,9 +232,20 @@ let dotandboxesDOM = function() {
             vertex.setAttribute('style', 'box-sizing: border-box; outline: 1px solid black; width: 5px; height: 5px; z-index: 3');
             vertexContainer.appendChild(vertex);
 
+            //Beginning of section to add eventlisteners to each vertex
+
+            vertex.addEventListener('click', function() {
+
+                console.log(vertex);
+
+            })
+
         }
 
     }
+
+
+    
 
 
     return {dblargeContainer, boxContainer, vertexContainer}
